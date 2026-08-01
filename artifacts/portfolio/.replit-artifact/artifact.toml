@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Akshay S. Kadam — Portfolio"
+description = "A stunning 3D animated personal portfolio website for Akshay S. Kadam, a Data Analyst and MCA graduate from Bangalore. Features immersive Three.js/React Three Fiber 3D visuals, smooth scroll animations, and sections for About, Skills, Experience, Projects, and Contact."
+version = "1.0.0"
+id = "artifacts/portfolio"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21113
+
+[services.development]
+run = "pnpm --filter @workspace/portfolio run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/portfolio", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/portfolio/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21113"
+BASE_PATH = "/"

@@ -1,0 +1,46 @@
+AKSHAY S KADAM 
++91 8277390087 akshayskadamba@gmail.com
+www.linkedin.com/in/akshaysk15
+https://github.com/Akshayskadam          Bangalore, Karnataka, India
+ABOUT ME
+Seeking an opportunity to apply my analytical and programming skills, contribute to innovative projects,
+and continuously learn emerging technologies while growing professionally.
+EDUCATION
+Masters of Computer Application (MCA)                                                                                      
+CMR University, Banaswadi Bengaluru
+Bachelors of Computer Applications (BCA)                                                                                 
+CMR University, Banaswadi, Bengaluru
+2025, 84.25%
+2022, 87.57%
+WORK EXPERIENCE
+BEWAKOOF BRANDS PVT. LTD. | DATA ANALYST |9TH FEB 2026 – PRESENT
+Write and optimize SQL queries for data extraction, reporting, and analytics workflows.
+Support schema migration activities and maintain ETL process documentation.
+Perform data analysis to generate business insights and support cross-functional decision
+making.
+Collaborate with QC and workflow teams to identify process gaps and improve operational
+efficiency.
+Worked on Databricks-based data workflows and documented data mappings, joins, and
+integrations for logistics and analytics systems.
+Blugate Software Technologies Pvt. Ltd. | SOFTWARE DEVELOPMENT INTERN | 02nd
+Dec 2024 – 31st Jan 2025 
+Utilized Angular, JavaScript, XML, and CSS to build and enhance responsive front-end components.
+Integrated RESTful APIs using POST and GET methods to enable seamless data exchange
+between client and server.
+SKILLS
+Languages: C, Java, Python
+Data & Analytics: SQL, Databricks, ETL Workflows, Data Mapping, Data Extraction, Reporting & Analytics,
+Schema Migration, Business Intelligence
+Web & Front-End: HTML, CSS, Angular, JavaScript, Node.js
+Mobile Development: Java, XML 
+Tools & IDEs: Visual Studio Code, Android Studio, Eclipse
+Embedded & IoT: Raspberry Pi, Embedded Systems, IoT Prototyping
+PROJECTS 
+Research Paper Publication
+“IoT-based Smart Doorbell with Face Recognition and Remote Alerts”, World Journal of Advanced
+Research and Reviews (WJARR), Vol. 27, Issue 1 (July 2025) 
+Capstone Project 
+"AgroVision: Smart Agriculture Monitoring System"
+Link to publication 
+A full-stack IoT system built with Angular, Node.js, and Raspberry Pi for live monitoring of environmental
+parameters in real time, featuring RESTful APIs and a live dashboard
