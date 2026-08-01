@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from 'react';
+import { useRef, useState, useCallback, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import {
   Github, Linkedin, Mail, Phone, ChevronDown,
@@ -220,6 +220,143 @@ function SocialLink({ href, icon: Icon }: { href: string; icon: any }) {
   );
 }
 
+/* ─── Per-letter 3D magnetic title ─── */
+function Magnetic3DTitle() {
+  const containerRef = useRef<HTMLHeadingElement>(null);
+  const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const [letterStyles, setLetterStyles] = useState<React.CSSProperties[]>([]);
+  const rafRef = useRef<number>(0);
+  const mouseRef = useRef({ x: -9999, y: -9999 });
+
+  // "Akshay S. Kadam" split into parts: first word normal, last word gradient
+  const firstWord = 'Akshay S. ';
+  const lastWord  = 'Kadam';
+  const allChars  = (firstWord + lastWord).split('');
+
+  useEffect(() => {
+    setLetterStyles(allChars.map(() => ({})));
+  }, []);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    window.addEventListener('mousemove', onMove);
+
+    function animate() {
+      const refs = letterRefs.current;
+      if (!refs.length) { rafRef.current = requestAnimationFrame(animate); return; }
+
+      const newStyles: React.CSSProperties[] = refs.map((el) => {
+        if (!el) return {};
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width  / 2;
+        const cy = rect.top  + rect.height / 2;
+        const dx = mouseRef.current.x - cx;
+        const dy = mouseRef.current.y - cy;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const maxDist = 140;
+        const proximity = Math.max(0, 1 - dist / maxDist); // 0..1
+
+        if (proximity === 0) {
+          return {
+            transform: 'perspective(400px) rotateX(0deg) rotateY(0deg) translateZ(0px) translateY(0px)',
+            color: '',
+            textShadow: '',
+            transition: 'transform 0.5s ease, color 0.5s ease, text-shadow 0.5s ease',
+          };
+        }
+
+        // Tilt toward cursor
+        const maxTilt = 38;
+        const rotX =  (dy / (rect.height / 2)) * -maxTilt * proximity;
+        const rotY =  (dx / (rect.width  / 2)) *  maxTilt * proximity;
+        const pushZ = proximity * 28;
+        const liftY = proximity * -14;
+
+        // Color: interpolate white → cyan based on proximity
+        const r = Math.round(255 * (1 - proximity * 0.9));
+        const g = Math.round(255 * (1 - proximity * 0.1));
+        const b = 255;
+        const glow = Math.round(proximity * 28);
+
+        return {
+          transform: `perspective(400px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(${pushZ}px) translateY(${liftY}px)`,
+          color: `rgb(${r},${g},${b})`,
+          textShadow: `0 0 ${glow}px rgba(0,229,255,${proximity * 0.9}), 0 0 ${glow * 2}px rgba(0,229,255,${proximity * 0.4})`,
+          transition: 'transform 0.12s ease-out, color 0.12s ease-out, text-shadow 0.12s ease-out',
+          zIndex: 10,
+        };
+      });
+
+      setLetterStyles(newStyles);
+      rafRef.current = requestAnimationFrame(animate);
+    }
+
+    rafRef.current = requestAnimationFrame(animate);
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  const firstLen = firstWord.length;
+
+  return (
+    <motion.h1
+      ref={containerRef}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4 drop-shadow-2xl select-none cursor-default"
+      style={{ lineHeight: 1.05 }}
+    >
+      {/* First part: "Akshay S. " */}
+      {firstWord.split('').map((char, i) => (
+        <span
+          key={`f-${i}`}
+          ref={(el) => { letterRefs.current[i] = el; }}
+          style={{
+            display: char === ' ' ? 'inline' : 'inline-block',
+            color: 'white',
+            willChange: 'transform',
+            ...letterStyles[i],
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </span>
+      ))}
+      {/* Last word: "Kadam" — gradient base, overridden by hover color */}
+      {lastWord.split('').map((char, i) => {
+        const gi = firstLen + i;
+        const hasHover = letterStyles[gi]?.color;
+        return (
+          <span
+            key={`l-${i}`}
+            ref={(el) => { letterRefs.current[gi] = el; }}
+            style={{
+              display: 'inline-block',
+              willChange: 'transform',
+              // Use gradient only when not hovered
+              ...(hasHover
+                ? letterStyles[gi]
+                : {
+                    background: 'linear-gradient(90deg, #00e5ff, #9d4edd)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    ...letterStyles[gi],
+                  }),
+            }}
+          >
+            {char}
+          </span>
+        );
+      })}
+    </motion.h1>
+  );
+}
+
 /* ─── Scroll indicator ─── */
 function ScrollIndicator() {
   return (
@@ -254,17 +391,7 @@ export default function Portfolio() {
         <HeroParallax>
           <FloatingBadge />
 
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter text-white mb-4 drop-shadow-2xl"
-          >
-            Akshay S.{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-              Kadam
-            </span>
-          </motion.h1>
+          <Magnetic3DTitle />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
