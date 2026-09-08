@@ -120,7 +120,7 @@ function Magnetic3DTitle() {
   const [letterStyles, setLetterStyles] = useState<React.CSSProperties[]>([]);
   const rafRef   = useRef<number>(0);
   const mouseRef = useRef({ x: -9999, y: -9999 });
-  const firstWord = 'Akshay S. ';
+  const firstWord = 'Akshay S ';
   const lastWord  = 'Kadam';
   const allChars  = (firstWord + lastWord).split('');
 
