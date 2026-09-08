@@ -162,7 +162,7 @@ function Magnetic3DTitle() {
   return (
     <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-      className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4 drop-shadow-2xl select-none cursor-default"
+      className="text-4xl md:text-6xl lg:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-4 drop-shadow-2xl select-none cursor-default"
       style={{ lineHeight: 1.05 }}>
       {firstWord.split('').map((ch, i) => (
         <span key={`f-${i}`} ref={el => { letterRefs.current[i] = el; }}
