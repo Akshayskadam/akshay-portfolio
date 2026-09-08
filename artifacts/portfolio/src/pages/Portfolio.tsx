@@ -563,7 +563,7 @@ export default function Portfolio() {
             />
             <div className="space-y-8">
               <ExperienceCard
-                company="Bewakoof Brands Pvt. Ltd." role="Data Analyst"
+                company="" role="Data Analyst"
                 date="Feb 9, 2026 – Present" align="left"
                 bullets={[
                   'Write and optimize SQL queries for data extraction, reporting, and analytics workflows',
