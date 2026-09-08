@@ -448,7 +448,7 @@ function FloatingBadge() {
       transition={{ duration: 0.7 }}
       className="mb-6 inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary font-mono text-xs uppercase tracking-widest backdrop-blur-md">
       <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-      Available for new opportunities
+      Exploring Challenges, Delivering Solutions
     </motion.div>
   );
 }
