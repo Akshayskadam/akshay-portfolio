@@ -514,9 +514,8 @@ export default function Portfolio() {
                     viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}
                     className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary origin-left"
                   />
-                  <p className="text-lg md:text-xl leading-relaxed text-gray-300 font-light">
-                    "Seeking an opportunity to apply my analytical and programming skills, contribute to
-                    innovative projects, and continuously learn emerging technologies while growing professionally."
+                  <p className="text-base md:text-lg leading-relaxed text-gray-300 font-light">
+                    "Data Analyst with experience in SQL, Python, ETL, Databricks, and data analytics, focused on turning complex data into actionable insights. Skilled in solving analytical problems, improving data processes, and supporting data-driven decision making. Eager to take on challenging projects, contribute effectively, and continuously grow in the field of data analytics."
                   </p>
                   <div className="mt-8 flex items-center gap-2 text-muted-foreground font-mono text-sm">
                     <MapPin size={16} className="text-primary" />

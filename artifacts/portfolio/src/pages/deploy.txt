@@ -1,0 +1,189 @@
+Absolutely. Let's do it **step by step**, and we won't change anything else.
+
+You want to change only:
+
+```text
+Available for new opportunities
+```
+
+to:
+
+```text
+Exploring Challenges, Delivering Solutions
+```
+
+### Step 1 — Open your portfolio project
+
+In VS Code, open:
+
+```text
+F:\Akshay Project\Free-Inquiry
+```
+
+### Step 2 — Open the `src` folder
+
+Go to:
+
+```text
+artifacts
+  → portfolio
+    → src
+```
+
+You should see files/folders such as `components`.
+
+### Step 3 — Search for the exact text
+
+In VS Code press:
+
+```text
+Ctrl + Shift + F
+```
+
+This opens **Search** across the whole project.
+
+Search for:
+
+```text
+Available for new opportunities
+```
+
+### Step 4 — Find the file
+
+VS Code should show the file containing:
+
+```text
+Available for new opportunities
+```
+
+Click that result.
+
+You will probably see something similar to:
+
+```tsx
+Available for new opportunities
+```
+
+or:
+
+```tsx
+<p>Available for new opportunities</p>
+```
+
+or:
+
+```tsx
+<span>Available for new opportunities</span>
+```
+
+### Step 5 — Change ONLY the text
+
+Change:
+
+```text
+Available for new opportunities
+```
+
+to:
+
+```text
+Exploring Challenges, Delivering Solutions
+```
+
+For example, if you have:
+
+```tsx
+<p>Available for new opportunities</p>
+```
+
+make it:
+
+```tsx
+<p>Exploring Challenges, Delivering Solutions</p>
+```
+
+**Don't change the `Contact Me`, `View Projects`, or other text.**
+
+### Step 6 — Save
+
+Press:
+
+```text
+Ctrl + S
+```
+
+### Step 7 — Check it locally
+
+Open PowerShell:
+
+```powershell
+cd "F:\Akshay Project\Free-Inquiry"
+$env:PORT=5174
+$env:BASE_PATH="/"
+pnpm --filter @workspace/portfolio dev
+```
+
+Open your local portfolio and check the first page.
+
+You should now see:
+
+> **Exploring Challenges, Delivering Solutions**
+
+instead of:
+
+> ~~Available for new opportunities~~
+
+### Step 8 — If it looks correct, build
+
+Stop the development server with:
+
+```text
+Ctrl + C
+```
+
+Then run:
+
+```powershell
+$env:PORT=5174
+$env:BASE_PATH="/"
+pnpm --filter @workspace/portfolio build
+```
+
+You should get:
+
+```text
+✓ built
+```
+
+### Step 9 — Push the change to GitHub
+
+Run:
+
+```powershell
+git add .
+git commit -m "Update hero section text"
+git push
+```
+
+### Step 10 — Netlify
+
+Because your Netlify project is connected to GitHub, the push should automatically trigger a new deployment.
+
+Wait for the deployment to finish, then refresh your portfolio.
+
+---
+
+### ⚠️ One important thing
+
+**Don't edit the built files inside `dist/public`.**
+
+Edit the original source file under:
+
+```text
+artifacts/portfolio/src/
+```
+
+Then build → GitHub → Netlify.
+
+If you want, **send me a screenshot of the VS Code search result after Step 3**, and I can tell you exactly which file to open and exactly which line to change.
+then open the website and re deploy 
